@@ -48,7 +48,7 @@
           Width="280"
           Height="300"
               Name="shownPic"
-                  ManipulationMode="TranslateX"
+                  ManipulationMode="All"
           >
 
             

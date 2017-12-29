@@ -43,15 +43,38 @@ namespace picUp.View
             this.InitializeComponent();
             DoThis();
             shownPic.ManipulationDelta += ShownPic_ManipulationDelta;
+            shownPic.ManipulationCompleted += ShownPic_ManipulationCompleted;
+            shownPic.ManipulationInertiaStarting += ShownPic_ManipulationInertiaStarting;
             dragTranslation = new TranslateTransform();
             shownPic.RenderTransform = this.dragTranslation;
 
         }
 
+        private void ShownPic_ManipulationInertiaStarting(object sender, ManipulationInertiaStartingRoutedEventArgs e)
+        {
+            e.TranslationBehavior.DesiredDeceleration = 0.1;
+            
+        }
+
+        private void ShownPic_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+
+            //TODO: Expand next images, remove dragged image and add a new final image
+            dragTranslation.X = 0;
+            dragTranslation.Y = 0;
+
+            
+        }
+
         private void ShownPic_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
+
             dragTranslation.X += e.Delta.Translation.X;
-            dragTranslation.Y = e.Delta.Translation.Y;
+            if (e.Cumulative.Translation.Y >= 0 && e.Cumulative.Translation.Y <= ((Window.Current.Bounds.Height/2)+ shownPic.ActualHeight))
+            {
+            dragTranslation.Y += e.Delta.Translation.Y;
+
+            }
         }
 
         private async void DoThis()
