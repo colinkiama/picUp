@@ -142,6 +142,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Control\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

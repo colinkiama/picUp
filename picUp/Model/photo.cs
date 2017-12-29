@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Search;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace picUp.Model
@@ -43,7 +44,36 @@ namespace picUp.Model
 
         #region Methods
 
-       
+        public static async Task<bool> GetPhotosFromCameraRoll()
+        {
+            bool gotPhotos = false;
+
+            QueryOptions queryOption = new QueryOptions
+               (CommonFileQuery.OrderByDate, new string[] { ".png", ".jpg", ".jpeg", ".svg" });
+
+            queryOption.FolderDepth = FolderDepth.Deep;
+
+
+            var files = await KnownFolders.CameraRoll.CreateFileQueryWithOptions(queryOption).GetFilesAsync(0, 10);
+
+
+            foreach (var file in files)
+            {
+                var photoToAdd = new photo();
+                photoToAdd.FileName = file.DisplayName;
+                photoToAdd.FileReference = file;
+                BitmapImage photoSource = new BitmapImage();
+
+                var streamToSetAs = await file.OpenAsync(FileAccessMode.ReadWrite);
+                await photoSource.SetSourceAsync(streamToSetAs);
+
+                photoToAdd.ImageSource = photoSource;
+                photos.Add(photoToAdd);
+            }
+
+
+            return gotPhotos;
+        }
 
         #endregion
 

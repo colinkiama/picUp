@@ -26,6 +26,8 @@
                     <Style x:Key="ButtonRoundedStyle" TargetType="Button">
                         <Setter Property="Background"
                                 Value="{ThemeResource DefaultTextForegroundThemeBrush}"/>
+                        <Setter Property="Foreground"
+                                Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
                         <Setter Property="Width"
                                 Value="250"/>
                         <Setter Property="Height"
@@ -79,7 +81,7 @@
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
                                         <Border x:Name="OverlayBorder" CornerRadius="26">
-                                            <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="White" Margin="15,3"/>
+                                            <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{TemplateBinding Foreground}" Margin="15,3"/>
                                         </Border>
                                     </Border>
                                 </ControlTemplate>
